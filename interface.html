@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Student Defaulter Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .welcome-box {
+            background-color:  #18ffe4;
+            color: black;
+            padding: 20px;
+            text-align: center;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .welcome-box h1 {
+            margin: 0;
+        }
+        .content {
+            padding: 0 20px;
+        }
+        .content h2 {
+            color: #45b6fc;
+            margin-top: 20px;
+        }
+        .content p {
+            color: #555555;
+            line-height: 1.6;
+        }
+        .prediction-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color:  #18ffe4;
+            color: black;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .prediction-button:hover {
+            background-color: #02f9dd;
+        }
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 0;
+            margin-top: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        footer {
+            text-align: center;
+            margin-top: 50px;
+        }
+        .social-media {
+            margin-bottom: 20px;
+        }
+        .social-link {
+            display: inline-block;
+            margin-right: 10px;
+            color: #0bc6ff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .social-link:hover {
+            color: #5aeaf7;
+        }
+        footer p {
+            color: #888888;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="welcome-box">
+            <h1>Welcome to Student Defaulter Prediction</h1>
+        </div>
+
+        <section class="content">
+            <h2>About The Project</h2>
+            <p>This project aims to predict whether college students will be in the defaulter list based on their attendance. It utilizes machine learning techniques, specifically the Random Forest algorithm, to analyze attendance data and make predictions.</p>
+            <p>Random Forest is an ensemble learning method that constructs multiple decision trees during training and outputs the mode of the classes (classification) or mean prediction (regression) of the individual trees. It is widely used in various machine learning tasks due to its robustness and accuracy.</p>
+            <br><br>
+            <h3>Enter students attendance for prediction:</h3>
+            <!-- Form for input -->
+            <form action="/predict" method="post">
+                <label for="iot">IoT Attendance:</label>
+                <input type="number" id="iot" name="iot" min="0" max="100" required>
+
+                <label for="se">SE Attendance:</label>
+                <input type="number" id="se" name="se" min="0" max="100" required>
+
+                <label for="hs-ob">HS-OB Attendance:</label>
+                <input type="number" id="hs-ob" name="hs-ob" min="0" max="100" required>
+
+                <label for="oe1-sc">OE1-SC Attendance:</label>
+                <input type="number" id="oe1-sc" name="oe1-sc" min="0" max="100" required>
+
+                <label for="oei-iccf">OEI-ICCF Attendance:</label>
+                <input type="number" id="oei-iccf" name="oei-iccf" min="0" max="100" required>
+
+                <label for="iotl">IOTL Attendance:</label>
+                <input type="number" id="iotl" name="iotl" min="0" max="100" required>
+
+                <input type="submit" value="Predict">
+                <h2 style="color:black">Prediction Result:</h2>
+                {% if prediction %}
+                <div id="prediction-result">
+                    <p>{{ prediction }}</p>
+                </div>
+                {% endif %}
+            </form>
+            <!-- Option for visualization -->
+            <br>
+           <h3>Visualizations:</h3>
+            <a href="/visualization" class="prediction-button">View Visualizations</a>
+
+        </section>
+        <!-- Display prediction result -->
+        <footer>
+            <div class="social-media">
+                <a href="#" class="social-link">Facebook</a>
+                <a href="#" class="social-link">Twitter</a>
+                <a href="#" class="social-link">Instagram</a>
+            </div>
+            <p>&copy; 2024 Student Defaulter Prediction</p>
+        </footer>
+    </div>
+</body>
+</html>

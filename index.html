@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Defaulters Pie Chart and Bar Graph</title>
+    <style>
+        /* Container styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        #container {
+            width: 80%;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        /* Table styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        /* Chart container styles */
+        canvas, img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+            margin-top: 20px;
+        }
+        /* H2 styles */
+        h2 {
+            background-color: #36A2EB;
+            color: white;
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+<div id="container">
+    <h2>Wrongly filled values in CSV file</h2>
+    <div id="outliers">
+        <table>
+            <tr>
+                <th>CNumber</th>
+                <th>Name</th>
+                <th>Subject</th>
+                <th>Value</th>
+            </tr>
+            {% for outlier in outlier_info %}
+            <tr>
+                <td>{{ outlier.CNumber }}</td>
+                <td>{{ outlier.Name }}</td>
+                <td>{{ outlier.Subject }}</td>
+                <td>{{ outlier.Value }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+    <h2>Missing Values in CSV file</h2>
+    <div id="missing-values">
+        <table>
+            <tr>
+                <th>Feature</th>
+                <th>Missing Values</th>
+            </tr>
+            {% for feature, value in missing_values.items() %}
+            <tr>
+                <td>{{ feature }}</td>
+                <td>{{ value }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+    <h2>Defaulter Pie Chart</h2>
+    <div id="pie-chart-container">
+        <canvas id="pie-chart" width="400" height="400"></canvas>
+    </div>
+
+    <h2>Defaulter Bar Graph</h2>
+    <div id="bar-chart-container">
+        <img id="bar-chart" src="data:image/svg+xml;base64,{{ bar_graph_data }}" alt="Bar Graph">
+    </div>
+
+
+</div>
+
+<script>
+    $(document).ready(function() {
+        // Parse JSON data containing chart information
+        var pieChartData = {
+            labels: ['YES', 'NO'],
+            datasets: [{
+                data: {{ pie_chart_data | tojson }},
+                backgroundColor: ['#FF6384', '#36A2EB'], // Colors for YES and NO sections
+                hoverBackgroundColor: ['#FF6384', '#36A2EB']
+            }]
+        };
+
+        // Render pie chart using Chart.js
+        var pieCtx = document.getElementById('pie-chart').getContext('2d');
+        var pieChart = new Chart(pieCtx, {
+            type: 'pie',
+            data: pieChartData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false, // Allow the canvas to adjust its size
+                tooltips: {
+                    callbacks: {
+                        label: function(tooltipItem, data) {
+                            var dataset = data.datasets[tooltipItem.datasetIndex];
+                            var total = dataset.data.reduce(function(previousValue, currentValue, currentIndex, array) {
+                                return previousValue + currentValue;
+                            });
+                            var currentValue = dataset.data[tooltipItem.index];
+                            var percentage = Math.floor(((currentValue / total) * 100) + 0.5);
+                            return percentage + "%";
+                        }
+                    }
+                }
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
