@@ -7,10 +7,14 @@ default.The core aim of our project is to provide educators with a tool that can
 # Output:
 
 
+![image](https://github.com/jadhavprajakta468/Defaulter_Prediction/assets/142293126/314a4354-9514-4cd6-924a-0d43fd12636a)
 
-![Screenshot (42)](https://github.com/jadhavprajakta468/Defaulter_Prediction/assets/142293126/78b5e92e-f1c2-4bba-bb9f-8d97056c6a2c)
-![Screenshot (44)](https://github.com/jadhavprajakta468/Defaulter_Prediction/assets/142293126/7a9ddf42-f521-4a88-b0eb-2baa382a0fd5)
+![image](https://github.com/jadhavprajakta468/Defaulter_Prediction/assets/142293126/0eaaf267-240d-4622-8712-4c21be167abc)
 
-![Screenshot (45)](https://github.com/jadhavprajakta468/Defaulter_Prediction/assets/142293126/3f9d8b0f-17fc-4623-846d-fe8248302d2d)
-![Screenshot (47)](https://github.com/jadhavprajakta468/Defaulter_Prediction/assets/142293126/948043a4-cde7-41b1-88ba-540a85a98566)
-![Screenshot (48)](https://github.com/jadhavprajakta468/Defaulter_Prediction/assets/142293126/c34c4506-2942-4da7-b706-10f1fabc8ad7)
+![image](https://github.com/jadhavprajakta468/Defaulter_Prediction/assets/142293126/a310b7c0-fe8a-4945-b728-95c680fcb8f9)
+
+![image](https://github.com/jadhavprajakta468/Defaulter_Prediction/assets/142293126/d6ab01a6-1bc2-4559-898e-413730985b13)
+
+![image](https://github.com/jadhavprajakta468/Defaulter_Prediction/assets/142293126/0c762cab-bf48-4c8f-958f-ce6f9afcac65)
+
+
